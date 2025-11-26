@@ -86,3 +86,27 @@ async function updateKomik(req, res) {
     res.status(400).json({ success: false, error: error.message });
   }
 }
+
+
+// Delete comic
+async function deleteKomik(req, res) {
+  try {
+    // Call service to delete by ID
+    const result = await komikService.deleteKomik(db, req.params.id);
+
+    // Respond with success message
+    res.json({ success: true, message: result.message });
+  } catch (error) {
+    // Error while deleting
+    res.status(400).json({ success: false, error: error.message });
+  }
+}
+
+// Export controller functions
+module.exports = {
+  createKomik,
+  getAllKomik,
+  getKomikById,
+  updateKomik,
+  deleteKomik,
+};
