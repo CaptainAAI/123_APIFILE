@@ -1,6 +1,6 @@
 // Function for creating a new comic
 async function createKomik(database, komikData) {
-  const { title, description, author, imageType, imageName, imageData } = komikData;
+    const { title, description, author, imageType, imageName, imageData } = komikData;
 
   // Validate required fields
   if (!title || !description || !author) {
@@ -9,9 +9,9 @@ async function createKomik(database, komikData) {
 
   // Insert comic into database
   const newKomik = await database.Komik.create({
-    title,
-    description,
-    author,
+    Judul: title,
+    deskripsi: description,
+    Penulis: author,
     imageType: imageType || null,
     imageName: imageName || null,
     imageData: imageData || null,
@@ -45,3 +45,10 @@ async function getKomikById(database, id) {
 
   return komik;
 }
+
+module.exports = {
+  createKomik,
+  getAllKomik,
+  getKomikById
+};
+
