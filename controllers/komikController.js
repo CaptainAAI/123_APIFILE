@@ -42,3 +42,21 @@ async function getAllKomik(req, res) {
     res.status(500).json({ success: false, error: error.message });
   }
 }
+
+async function getKomikById(req, res) {
+  try {
+    const { id } = req.params;
+
+    // Call service to fetch by ID
+    const result = await komikService.getKomikById(db, id);
+
+    // Return result
+    res.status(200).json({
+      success: true,
+      data: result,
+    });
+  } catch (error) {
+    // Not found or error
+    res.status(404).json({ success: false, error: error.message });
+  }
+}
