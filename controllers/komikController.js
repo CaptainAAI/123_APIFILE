@@ -25,3 +25,20 @@ async function createKomik(req, res) {
     res.status(400).json({ success: false, error: error.message });
   }
 }
+
+// Get all comics
+async function getAllKomik(req, res) {
+  try {
+    // Call service to fetch all comics
+    const result = await komikService.getAllKomik(db);
+
+    // Return success response
+    res.status(200).json({
+      success: true,
+      data: result,
+    });
+  } catch (error) {
+    // Server error response
+    res.status(500).json({ success: false, error: error.message });
+  }
+}
